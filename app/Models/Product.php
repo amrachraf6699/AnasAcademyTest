@@ -18,4 +18,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    //Define the relationship between the product and the seller
+    public function seller()
+    {
+        return $this->belongsTo(User::class , 'seller_id');
+    }
 }
