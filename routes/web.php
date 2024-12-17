@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvokableHomeController;
 use App\Http\Controllers\ProductsController;
@@ -33,3 +34,12 @@ Route::group(['prefix' => 'products' , 'as' => 'products.' , 'controller' => Pro
 
 
 //Section 2 Task End
+
+
+//Section 3 Task Start
+
+require __DIR__.'/auth.php';
+
+/* Completion of Section 3 Task Routes is at routes/me.php */
+
+//Section 3 Task End

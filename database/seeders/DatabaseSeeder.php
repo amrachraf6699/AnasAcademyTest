@@ -13,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        //Seed some users for autentication
+        User::factory()->count(10)->create();
+        User::factory()->seller()->create();
+
+        
         //Call seeders
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);

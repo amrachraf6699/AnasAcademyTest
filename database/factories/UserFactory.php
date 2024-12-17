@@ -41,4 +41,14 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    /**
+     * Indicate that the user is a seller
+     */
+    public function seller(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_seller' => true,
+        ]);
+    }
 }
