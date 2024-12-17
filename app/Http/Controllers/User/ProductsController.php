@@ -19,7 +19,9 @@ class ProductsController extends Controller
     {
         $products = auth()->user()->products()->paginate(10);
 
-        return view('user.products.index', compact('products'));
+        $categories = Category::all();
+
+        return view('user.products.index', compact('products', 'categories'));
     }
 
     /**
@@ -27,11 +29,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', Product::class);
-
-        $categories = Category::all();
-
-        return view('user.products.create', compact('categories'));
+        abort(404);
     }
 
     /**
@@ -42,6 +40,15 @@ class ProductsController extends Controller
         Gate::authorize('create', Product::class);
 
         $product = auth()->user()->products()->create($request->validated());
+
+        if($request->wantsJson()){
+            return response()->json(
+                [
+                    'success' => true,
+                    'product' => $product
+                ]
+            );
+        }
 
         return to_route('myproducts.index')->with('success' , 'Product created successfully');
     }
