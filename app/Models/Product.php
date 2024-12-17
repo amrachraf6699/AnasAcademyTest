@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
     //Define the fillable fields for mass assignment
-    protected $fillable = ['name', 'price', 'quantity'];
+    protected $fillable = ['name', 'price', 'quantity' , 'category_id' , 'seller_id'];
 
 
     //Define the relationship between the product and the category

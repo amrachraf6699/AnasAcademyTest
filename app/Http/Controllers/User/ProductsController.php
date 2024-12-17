@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
@@ -26,15 +27,23 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        abort(404);
+        Gate::authorize('create', Product::class);
+
+        $categories = Category::all();
+
+        return view('user.products.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        abort(404);
+        Gate::authorize('create', Product::class);
+
+        $product = auth()->user()->products()->create($request->validated());
+
+        return to_route('myproducts.index')->with('success' , 'Product created successfully');
     }
 
     /**
