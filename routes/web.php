@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvokableHomeController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 
-//Section 1 Task
+//Section 1 Task Start
 
 //Routing 1
 Route::get('', [HomeController::class , 'index']);
@@ -20,3 +21,15 @@ Route::get('name/{name}', [HomeController::class , 'name'])->whereAlpha('name');
 
 //Middleware 1 & 2
 Route::get('logMe', [HomeController::class , 'logMe'])->middleware('logRequest');
+
+//Section 1 Task End
+
+//Section 2 Task Start
+
+Route::group(['prefix' => 'products' , 'as' => 'products.' , 'controller' => ProductsController::class], function(){
+    Route::get('' , 'index')->name('index');
+    Route::get('filter' , 'filter')->name('filter');
+});
+
+
+//Section 2 Task End
