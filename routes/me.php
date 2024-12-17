@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\ProductsController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,9 @@ Route::group(['prefix' => 'products' , 'as' => 'myproducts.' , 'controller' => P
 
 
 //Section 3 Task End
+
+//Section 7 Start
+Route::get('pay' , [PaymentController::class , 'index'])->name('pay');
+Route::post('pay' , [PaymentController::class , 'store'])->name('pay.store');
+Route::post('pay/webhook' , [PaymentController::class , 'webhook'])->name('stripe.webhook');
+Route::view('payment/success' , 'user.payment.success')->name('payment.success');
